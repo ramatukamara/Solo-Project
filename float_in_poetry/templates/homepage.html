@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Float in Poetry | Home Page</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" type= "text/css" href="{{url_for('static', filename='css/homepage.css')}}">
+</head>
+
+<style>
+    body {
+        background-color: #abbed0; 
+    }
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px;
+    }
+    .header h1 {
+        font-size: medium;
+        font-family: 'Lucida Handwriting';
+    }
+
+    .header .buttons {
+        display: flex;
+        align-items: center;
+    }
+    .header .buttons button {
+        margin-right: 10px;
+    }
+    .container {
+        text-align: center; 
+        margin-top: 50px; 
+    }
+    .post {
+        margin-bottom: 20px;
+        text-align: center;
+    }
+    .post-content {
+        margin-top: 10px; 
+
+    }
+    .your-poem-box {
+        background-color: white;
+        border: 3px solid #333;
+        padding: 10px;
+        text-align: center;
+        text-indent: 20px;
+        font-family: 'Lucida Handwriting';
+        font-size: 16px; 
+        line-height: 1.6;
+        margin: 0 auto; 
+        margin-bottom: 80px;
+        max-width: 80%; 
+    }
+    .title {
+        font-size: 16px; 
+        font-weight: bold; 
+    }
+    .description {
+        font-size: 12px; 
+    }
+
+    .description, .title {
+        display: inline-block;
+        margin: 0;
+        margin-top: 0px; 
+        margin-bottom: 0px
+    }
+
+</style>
+
+<body>
+    <div class="header">
+        <h1>Float in Poetry</h1> 
+        {% if user %}
+            <h2>Welcome {{ user }}!</h2>  
+        {% endif %}
+        <div class="buttons">
+
+            <button type="button" class="btn btn-outline-dark btn-rounded btn-sm" data-mdb-ripple-color="dark">
+                <a href="/new_poem" style="text-decoration: none; color: inherit;">+ Create</a>
+            </button>
+
+            <button type="button" class="btn btn-outline-dark btn-rounded btn-sm" data-mdb-ripple-color="dark">
+                <a href="/logout" style="text-decoration: none; color: inherit;">Logout</a>
+            </button>
+
+        </div>
+
+    </div>
+    <div class="container">
+        <div class="col-md-9">
+            <div class="poems">
+
+                {% for poem in poems %}
+                    <div class="post">
+
+                        <div class="post-content">
+
+
+                            <p class="title">{{ poem.title }}</p>
+                            <p class="description">{{ poem.description }}</p>
+
+
+                            <div class="your-poem-box">
+                               <pre>{{ poem.your_poem }}</pre>
+                            
+                            {% if poem.user_id == session ['uid'] %}
+
+                                <button type="button" class="btn btn-outline-dark btn-rounded btn-sm" data-mdb-ripple-color="dark">
+                                    <a href="/poem/{{ poem.id }}/edit" style="text-decoration: none; color: inherit;">&#9998;</a>
+                                </button>
+                                <button type="button" class="btn btn-outline-dark btn-rounded btn-sm" data-mdb-ripple-color="dark">
+                                    <a href="/poem/{{ poem.id }}/delete" style="text-decoration: none; color: red;">x</a>
+                                </button>
+
+                            {% endif %}
+
+                            </div>
+
+                        </div>
+                    </div>
+                {% endfor %}
+
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>

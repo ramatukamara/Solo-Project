@@ -1,0 +1,60 @@
+body {
+    background-color: #abbed0; 
+}
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+.header h1 {
+    font-size: medium;
+    font-family: 'Lucida Handwriting';
+}
+
+.header .buttons {
+    display: flex;
+    align-items: center;
+}
+.header .buttons button {
+    margin-right: 10px;
+}
+.container {
+    text-align: center; 
+    margin-top: 50px; 
+}
+.post {
+    margin-bottom: 20px;
+    text-align: center;
+}
+.post-content {
+    margin-top: 10px; 
+
+}
+.your-poem-box {
+    background-color: white;
+    border: 3px solid #333;
+    padding: 10px;
+    text-align: center;
+    text-indent: 20px;
+    font-family: 'Lucida Handwriting';
+    font-size: 16px; 
+    line-height: 1.6;
+    margin: 0 auto; 
+    margin-bottom: 80px;
+    max-width: 80%; 
+}
+.title {
+    font-size: 16px; 
+    font-weight: bold; 
+}
+.description {
+    font-size: 12px; 
+}
+
+.description, .title {
+    display: inline-block;
+    margin: 0;
+    margin-top: 0px; 
+    margin-bottom: 0px
+}

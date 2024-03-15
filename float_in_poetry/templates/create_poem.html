@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Float in Poetry | Create Post</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/create_poem.css') }}">
+</head>
+
+<style>
+    
+    body {
+        background-color: #abbed0; 
+    }
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px;
+    }
+    .header h1 {
+        font-size: medium;
+        font-family: 'Lucida Handwriting';            
+
+    }
+    .header h3 {
+        font-family: 'Snell Roundhand'; 
+        font-size: 20px;
+        margin: 0;
+    }
+    .links {
+        display: flex;
+        align-items: center;
+    }
+    .links button {
+        margin-right: 10px;
+    }
+    .main {
+        text-align: center;
+    }
+    .form-outline {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+    textarea.form-control {
+        height: auto;
+    }
+
+</style>
+
+
+<body>
+    <div class="header">
+        <h1>Float in Poetry</h1>
+        <div class="links"> 
+            <button type="button" class="btn btn-outline-dark btn-rounded btn-sm" data-mdb-ripple-color="dark">
+                <a href="/homepage" style="text-decoration: none; color: inherit;">Home</a>
+            </button>
+            <button type="button" class="btn btn-outline-dark btn-rounded btn-sm" data-mdb-ripple-color="dark">
+                <a href="/logout" style="text-decoration: none; color: inherit;">Logout</a>
+            </button>
+        </div>
+    </div>
+    <div class="main">
+        <form action="/create_poem" method="POST" style="max-width: 26rem; margin: 0 auto;">
+
+            <div data-mdb-input-init class="form-outline mb-4">
+                <input type="text" name="title" id="form4Example1" class="form-control" />
+                <label class="form-label" for="form4Example1">Title</label>
+                {% for message in get_flashed_messages(category_filter=['create_poem_title']) %}
+                <p class="alert alert-danger">{{message}}</p>
+                {% endfor %}
+            </div>
+
+            <div data-mdb-input-init class="form-outline mb-4">
+                <textarea class="form-control" name="your_poem" id="form4Example3" rows="20"></textarea>
+                <label class="form-label" for="form4Example3">Your Poem</label>
+                {% for message in get_flashed_messages(category_filter=['create_poem_poem']) %}
+                <p class="alert alert-danger">{{message}}</p>
+                {% endfor %}
+            </div>
+
+            <div data-mdb-input-init class="form-outline mb-4">
+                <input type="text" name="description" id="form4Example2" class="form-control" />
+                <label class="form-label" for="form4Example2">Brief Description</label>
+                {% for message in get_flashed_messages(category_filter=['create_poem_descrip']) %}
+                <p class="alert alert-danger">{{message}}</p>
+                {% endfor %}
+            </div>
+
+            <button data-mdb-ripple-init type="submit" class="btn btn-primary btn-block mb-4">Create</button>
+        </form>
+    </div>
+</body>
+</html>

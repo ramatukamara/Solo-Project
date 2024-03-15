@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <title>Float in Poetry</title>
+</head>
+
+<body style="display:flex; justify-content: space-between; padding:0 20%">
+
+    <div>
+        <form action="/register" method = 'POST' style="display:flex; flex-direction:column; background-color: #abbed0;color: aliceblue; padding: 10% 20%; gap:5px; width: 50vh; border-radius: 10px;">
+
+            <h2 class="fs-2 text-warning">Create Account!</h2>
+            
+            <label for="name">Name:</label>
+            <input type="text" name="name" class="form-control">
+            {% for message in get_flashed_messages(category_filter=['register_name']) %}
+            <p class="alert alert-danger">{{message}}</p>
+            {% endfor %}
+
+            <label for="username">Username:</label>
+            <input type="text" name="username" class="form-control">
+            {% for message in get_flashed_messages(category_filter=['register_username']) %}
+            <p class="alert alert-danger">{{message}}</p>
+            {% endfor %}
+
+            <label for="email">Email:</label>
+            <input type="text" name="email" class="form-control">
+            {% for message in get_flashed_messages(category_filter=['register_email']) %}
+            <p class="alert alert-danger">{{message}}</p>
+            {% endfor %}
+
+            {% for message in get_flashed_messages(category_filter=['register_invalid']) %}
+            <p class="alert alert-danger">{{message}}</p>
+            {% endfor %}
+
+            <label for="password">Password:</label>
+            <input type="password" name="password" class="form-control">
+            {% for message in get_flashed_messages(category_filter=['register_password']) %}
+            <p class="alert alert-danger">{{message}}</p>
+            {% endfor %}
+
+            <label for="confirm_password">Confirm Password:</label>
+            <input type="password" name="confirm_password" class="form-control">
+            {% for message in get_flashed_messages(category_filter=['register_confirm']) %}
+            <p class="alert alert-danger">{{message}}</p>
+            {% endfor %}
+
+            <input type="submit" value="Register" class="btn btn-warning">
+
+        </form>
+    </div>
+
+    <div>
+        <form action="/login" method ='POST' style="display:flex; flex-direction:column; background-color: #abbed0;color: aliceblue; padding: 10% 20%; gap:5px; width: 50vh; border-radius: 10px;">
+
+            <h2 class="fs-2 text-warning text-center">Login</h2>
+
+            <label for="name">Username:</label>
+            <input type="text" name="username" class="form-control">
+            {% for message in get_flashed_messages(category_filter=['login_username']) %}
+            <p class="alert alert-danger">{{message}}</p>
+            {% endfor %}
+
+            <label for="password">Password:</label>
+            <input type="password" name="password" class="form-control">
+            {% for message in get_flashed_messages(category_filter=['login_password']) %}
+            <p class="alert alert-danger">{{message}}</p>
+            {% endfor %}
+
+            {% for message in get_flashed_messages(category_filter=['login']) %}
+            <p class="alert alert-danger">{{message}}</p>
+            {% endfor %}
+
+            <input type="submit" value="Login" class="btn btn-warning">
+
+        </form>
+    </div>
+</body>
+</html>
